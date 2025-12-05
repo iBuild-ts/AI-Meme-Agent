@@ -1,0 +1,20 @@
+{
+  "name": "base-ai-meme-agent",
+  "version": "1.0.0",
+  "description": "AI Meme Agent on Base - Autonomous AI agents for memecoin holders",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "contracts:compile": "pnpm -C contracts compile",
+    "contracts:deploy": "pnpm -C contracts deploy",
+    "frontend:dev": "pnpm -C frontend dev",
+    "frontend:build": "pnpm -C frontend build"
+  },
+  "workspaces": [
+    "frontend",
+    "contracts"
+  ],
+  "packageManager": "pnpm@10.18.3"
+}
