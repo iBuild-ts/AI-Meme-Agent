@@ -6,9 +6,21 @@ async function main() {
   console.log("🚀 Deploying AI Meme Agent contracts...\n");
 
   // Get deployer account
-  const [deployer] = await hre.ethers.getSigners();
+  const signers = await hre.ethers.getSigners();
+  
+  if (!signers || signers.length === 0) {
+    throw new Error("❌ No signers available! Make sure PRIVATE_KEY is set in .env file");
+  }
+  
+  const deployer = signers[0];
   console.log("📝 Deploying contracts with account:", deployer.address);
-  console.log("Account balance:", (await deployer.provider.getBalance(deployer.address)).toString());
+  
+  try {
+    const balance = await deployer.provider.getBalance(deployer.address);
+    console.log("Account balance:", hre.ethers.formatEther(balance), "ETH");
+  } catch (error) {
+    console.log("⚠️  Could not fetch balance, but proceeding with deployment...");
+  }
 
   // Deploy MemeToken
   console.log("\n1️⃣  Deploying MemeToken...");
